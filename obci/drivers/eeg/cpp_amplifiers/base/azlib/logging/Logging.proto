@@ -1,0 +1,67 @@
+//
+// Azouk Libraries -- Libraries and goodies created for www.azouk.com.
+// Copyright (C) 2008-2009 Azouk Network Ltd.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Author:
+//      Piotr Findeisen <piotr.findeisen at gmail.com>
+//
+
+package azlib.logging;
+
+message LogEntry {
+    // unique ID of this log entry
+    required uint64 id = 1;
+    
+    // timestamp when log entry created
+    optional uint64 timestamp = 2;
+
+    // context, e.g. "tarantula.multiplexer.connections.123"
+    optional string context = 3;
+
+    // DEBUG, INFO, OK, WARNING, ERROR, CRITICAL, UNKNOWN -- defined in azlib/loggin.h
+    optional uint32 level = 4;
+
+    // defined along with levels
+    optional uint32 verbosity = 5;
+
+    // textual information
+    optional string text = 6;
+
+    // data_type of the data trasnferred (numeric constant)
+    optional int32 data_type = 7;
+
+    // any data (preferrably serialized ProtoBuf message)
+    optional bytes data = 8;
+
+    // data class name
+    optional string data_class = 9;
+
+    // workflow
+    optional bytes workflow = 10;
+
+    // pid
+    optional uint32 pid = 11;
+
+    // azouk.release.version
+    optional string version = 12;
+
+    // when the LogEntry orginated from
+    // source_file can be in a form header.h:program.c
+    optional bytes source_file = 20;
+    optional int32 source_line = 21;
+    // compilation_datetime is human readable text (__DATE__ __TIME__ preprocessor macros)
+    optional string compilation_datetime = 22;
+}

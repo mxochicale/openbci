@@ -2,7 +2,7 @@
 #include <stdio.h>
 using namespace std;
 #include <boost/program_options.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <errno.h>
 #include <time.h>
 namespace po = boost::program_options;
@@ -24,10 +24,10 @@ po::options_description Amplifier::get_options() {
 	po::options_description options("Amplifier Options");
 	options.add_options()
 			("sampling_rate,s",	po::value<int>()->default_value(128)
-					->notifier(boost::bind(&Amplifier::set_sampling_rate_, this,_1)),
+					->notifier(boost::bind(&Amplifier::set_sampling_rate_, this,boost::placeholders::_1)),
 					"Sampling rate to use")
 			("active_channels,c",po::value<string>()->default_value("*")
-					->notifier(boost::bind(&Amplifier::set_active_channels_string,this, _1)),
+					->notifier(boost::bind(&Amplifier::set_active_channels_string,this, boost::placeholders::_1)),
 					"String with channel names or indexes separated by semicolons");
 
 	return options;

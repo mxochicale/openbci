@@ -77,7 +77,7 @@ $(BUILD)/%.o :	$(BASEDIR)/%.cpp $(CHECK_BUILD)
 
 $(BUILD)/variables.pb.cc:	$(BUILD)/variables.pb.h $(CHECK_BUILD)
 $(BUILD)/variables.pb.h: $(BASEDIR)/variables.proto $(CHECK_BUILD)
-	protoc --cpp_out='$(BUILD)' --proto_path $(BASEDIR) $<
+	protoc --cpp_out=$(BUILD) --proto_path $(BASEDIR) $<
 
 $(BUILD)/variables.pb.o: $(addprefix $(BUILD)/, variables.pb.cc variables.pb.h)
 	$(BUILD_TARGETS)
